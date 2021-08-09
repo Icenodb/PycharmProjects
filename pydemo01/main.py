@@ -18,3 +18,14 @@ print(txt)
 
 txt = "以{}开头，中间{}填充，以{}结尾".format(first, center, last)
 print(txt)
+
+fibs=[1,1]
+for m in range(3,37):
+    fibs.append(fibs[-1]+fibs[-2])
+count=0
+for e in fibs:
+    print(f"{e:>10}",end=" ")
+    count+=1
+    if count==6:
+        print()
+        count=0
