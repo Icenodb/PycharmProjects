@@ -34,15 +34,19 @@ def queryEmp(db: dict):
             print(f"员工性别:{db[uname]['sex']}\n")
             print()
 
-def updateEmp(db:dict,uname:str):
+
+def updateEmp(db: dict):
+    uname=input("请输入要更新信息的员工的姓名:\n")
     print()
+
 
 if __name__ == '__main__':
     while True:
         option = input("请选择要进行的操作\n"
                        "A:添加员工\n"
                        "B:查询员工\n"
-                       "C:退出\n")
+                       "C:更新员工信息\n"
+                       "D:退出\n")
         if option.lower() == "a":
             addEmp(db)
             print(db)
@@ -51,6 +55,9 @@ if __name__ == '__main__':
             queryEmp(db)
             print("=======================================")
         elif option.lower() == "c":
+            updateEmp()
+            print("=======================================")
+        elif option.lower() == "d":
             print("感谢使用\n")
             print("=======================================")
             break
