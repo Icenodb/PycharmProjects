@@ -1,5 +1,20 @@
+import json
+
 db = {}
 lable = {"a": "address", "p": "phone", "s": "sex"}
+
+
+# 将字典转换为json保存
+def toJson(db: dict):
+    json_str = json.dumps(db, indent=4)
+    with open('db.json', 'w') as json_file:
+        json_file.write(json_str)
+
+
+# 将json读取为字典
+def toDict():
+    with open('db.json', 'r') as f:
+        return json.load(fp=f)
 
 
 # 添加员工的方法
@@ -15,6 +30,7 @@ def addEmp(db: dict):
             empInfo = input("请输入员工的信息(电话号码,住址,性别):")
             listInfo = empInfo.split(",")
             db[uname] = {"phone": listInfo[0], "address": listInfo[1], "sex": listInfo[2]}
+            toJson(db)
             break
 
 
@@ -51,6 +67,7 @@ def updateEmp(db: dict):
             empInfo = input("请输入修改后的信息(电话号码,住址,性别):")
             listInfo = empInfo.split(",")
             db[uname] = {"phone": listInfo[0], "address": listInfo[1], "sex": listInfo[2]}
+            toJson(db)
             break
 
 
@@ -63,10 +80,13 @@ def delEmp(db: dict):
             continue
         else:
             del db[uname]
+            toJson(db)
 
 
 if __name__ == '__main__':
     while True:
+        db = toDict()
+        print(db)
         option = input("请选择要进行的操作\n"
                        "A:添加员工\n"
                        "B:查询员工\n"
