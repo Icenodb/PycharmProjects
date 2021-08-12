@@ -52,15 +52,18 @@ def updateEmp(db: dict):
             listInfo = empInfo.split(",")
             db[uname] = {"phone": listInfo[0], "address": listInfo[1], "sex": listInfo[2]}
             break
-def delEmp(db:dict):
+
+
+def delEmp(db: dict):
     while True:
         uname = input("请输入要删除的员工的姓名:\n")
-        if uname.lower()=="e":break
+        if uname.lower() == "e": break
         if uname not in db:
             print(f"该员工'{uname}'不存在\n")
             continue
         else:
             del db[uname]
+
 
 if __name__ == '__main__':
     while True:
