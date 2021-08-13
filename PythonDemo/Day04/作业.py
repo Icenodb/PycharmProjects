@@ -21,7 +21,7 @@ def toDict():
 def addEmp(db: dict):
     while True:
         uname = input("请输入要添加的员工的姓名:")
-        if uname.lower() == "e": break
+        if uname.lower() == "e" or uname == "": break
         if uname in db:
             print("该员工已经存在\n")
             print("=======================================")
@@ -38,7 +38,7 @@ def addEmp(db: dict):
 def queryEmp(db: dict):
     while True:
         uname = input("请输入要查询的员工的姓名:")
-        if uname.lower() == "e": break
+        if uname.lower() == "e" or uname == "": break
         if uname not in db:
             print(f"没有员工'{uname}'的相关信息\n")
             print("=======================================")
@@ -55,7 +55,7 @@ def queryEmp(db: dict):
 def updateEmp(db: dict):
     while True:
         uname = input("请输入要更新信息的员工的姓名:\n")
-        if uname.lower() == "e": break
+        if uname.lower() == "e" or uname == "": break
         if uname not in db:
             print(f"该员工'{uname}'不存在\n")
             continue
@@ -74,7 +74,7 @@ def updateEmp(db: dict):
 def delEmp(db: dict):
     while True:
         uname = input("请输入要删除的员工的姓名:\n")
-        if uname.lower() == "e": break
+        if uname.lower() == "e" or uname == "": break
         if uname not in db:
             print(f"该员工'{uname}'不存在\n")
             continue
@@ -106,7 +106,7 @@ if __name__ == '__main__':
         elif option.lower() == "d":
             delEmp(db)
             print("=======================================")
-        elif option.lower() == "e":
+        elif option.lower() == "e" or option == "":
             print("感谢使用\n")
             print("=======================================")
             break
