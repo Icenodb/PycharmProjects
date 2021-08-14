@@ -16,6 +16,10 @@ def killPerson():
                     eindex = person.index(e)
                     person[eindex] = 0
                     psum += 1
+                    if psum==15:
+                        formatList(person,5)
+                        return
+                    count=0
     print()
 
 
