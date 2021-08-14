@@ -39,3 +39,5 @@ def formatList(data: list, count: int):
 
 
 killPerson()
+print(killPerson.__doc__)
+print(formatList.__doc__)
