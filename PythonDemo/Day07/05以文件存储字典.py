@@ -53,3 +53,6 @@ if __name__ == "__main__":
     # createEmp()
     modifyById(10, '杜甫', '男', 6789.4567)
     print("-----end----")
+    # with open("emp.db", "r", encoding="utf-8") as fr:
+    #     rows = fr.readlines()
+    #     print(type(rows))
