@@ -27,5 +27,6 @@ def openFile2(fileName: str, model: str = "w"):
 
 if __name__ == "__main__":
     openFile2("f3.txt", "a")
+    # 指定目录如果不存在 会报错
     # openFile2(r"c:\Users\xxx\Documents\Box\f3.txt", "a")
     print("end")
