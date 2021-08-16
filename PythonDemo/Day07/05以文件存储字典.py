@@ -1,6 +1,5 @@
 import random
 
-
 def createEmp():
     """
     创建数据
