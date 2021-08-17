@@ -51,5 +51,5 @@ def creatTable():
 
 if __name__ == "__main__":
     # regTable()
-    creatTable()
+    # creatTable()
     print("===end===")
