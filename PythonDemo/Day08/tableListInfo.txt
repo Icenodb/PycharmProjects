@@ -1,0 +1,3 @@
+{'name': 'user', 'cnname': '用户表', 'state': 1}
+{'name': 'userlog', 'cnname': '用户日志表', 'state': 1}
+{'name': 'syscode', 'cnname': '无限层级编码表', 'state': 1}
