@@ -96,11 +96,83 @@ def addUserAndLog(dto: dict = {}):
     return tag
 
 
+# =================0918=========================
+def deleteByIdUserAndLog(uid: int):
+    """数据级联删除"""
+    sql1 = "delete from userlog where uid=?"
+    sql2 = "delete from user where uid=?"
+    with sqlite3.connect(dbname) as conn:
+        tag = 0
+        try:
+            conn.execute("PRAGMA foreign_keys=ON")
+            conn.execute(sql1, [uid])
+            conn.execute(sql2, [uid])
+            conn.commit()
+            tag = 1
+        except Exception as ex:
+            print(ex)
+            conn.rollback()
+    return tag
+
+
+def batchDeleteUser(idlist: list):
+    """数据批量删除"""
+    sql = "delete from user where uid=?"
+    parameters = [[id] for id in idlist]
+    with sqlite3.connect(dbname) as conn:
+        tag = 0
+        try:
+            conn.executemany(sql, parameters)
+            conn.commit()
+            tag = 1
+        except Exception as ex:
+            print(ex)
+            conn.rollback()
+    return tag
+
+
+def batchDeleteUserAndLog(idlist: list):
+    """批量级联删除"""
+    sql1 = "delete from userlog where uid=?"
+    sql2 = "delete from user where uid=?"
+    # 转换主键列表
+    params = [[uid] for uid in idlist]
+    with sqlite3.connect(dbname) as conn:
+        tag = 0
+        try:
+            conn.execute("PRAGMA foreign_keys=ON")
+            conn.executemany(sql1, params)
+            conn.executemany(sql2, params)
+            conn.commit()
+            tag = 1
+        except Exception as ex:
+            print(ex)
+            conn.rollback()
+    return tag
+
+
 if __name__ == '__main__':
-    dto = {'name': '李白', 'sex': '男', 'nation': '汉族',
-           'job': '程序员', 'sal': '23456.789'}
-    tag = addUserAndLog(dto)
+    # idlist=[12,14,16]
+    # tag=batchDeleteUser(idlist)
+    # print(tag)
+
+    idlist = [1, 3, 5, 7, 9]
+    tag = batchDeleteUserAndLog(idlist)
     print(tag)
+
+    # tag=deleteByIdUserAndLog(10)
+    # print(tag)
+
+    # for uno in range(1,11):
+    #      dto={'name':'员工'+str(uno),'sex':'男','nation':'满族',
+    #            'job':'程序员','sal':'23456.789'}
+    #      tag=addUserAndLog(dto)
+    #      print(tag)
+
+    # dto = {'name': '李白', 'sex': '男', 'nation': '汉族',
+    #        'job': '程序员', 'sal': '23456.789'}
+    # tag = addUserAndLog(dto)
+    # print(tag)
 
     # tag=addUser(dto)
     # print(tag)
