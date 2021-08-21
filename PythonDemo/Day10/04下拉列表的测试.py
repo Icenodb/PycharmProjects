@@ -5,7 +5,7 @@ import baseContr as bc
 win = bc.newWindow()
 
 comValue = ('java', 'C', 'C++', 'Python')
-comCode=('01','02','03','04')        #读取文本对应的code
+comCode = ('01', '02', '03', '04')  # 读取文本对应的code
 # 创建下拉列表控件
 lan = ttk.Combobox(win, state='readonly')
 lan.pack()
@@ -19,5 +19,4 @@ def readCom():
 
 
 tk.Button(win, text='测试', command=readCom).pack()
-
 win.mainloop()
