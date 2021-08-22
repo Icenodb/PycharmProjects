@@ -1,6 +1,7 @@
 import sqlite3
 import tkinter as tk
 from tkinter import ttk
+from tkinter.ttk import Checkbutton
 
 dbname = "../Day08/az.db"
 
@@ -194,7 +195,46 @@ def newText(root: tk.Frame, title: str, w: int = 45, h: int = 7):
     return text
 
 
+def newCheckBox(root, fname: str, title: str = '', ):
+    """
+    读取数据库 生成CheckBox
+    :param root:依附的容器
+    :param fname:要查询的列表名
+    :param title:标题
+    :param defVal:默认选中的值
+    :return:CheckBox对象,CheckBox对象编码的元组
+    """
+    # 定义SQL语句
+    sql = "select fcode,fvalue from syscode where isv=? and fname=?"
+    # 连接数据库
+    with sqlite3.connect(dbname) as conn:
+        # 获取游标
+        cursor = conn.cursor()
+        # 基于游标执行SQL语句
+        cursor.execute(sql, ['1', fname])
+        # 读取查询结果
+        rows = cursor.fetchall()
+    # 解析查询结果,填充select的code和label列表
+    tk.Label(root, text=title).pack(side='left')
+    cbValues = []
+    for ins in rows:
+        var = tk.StringVar()
+        CheckValue = ins[0]
+        # print(CheckValue)
+        CheckName = ins[1]
+        # print(CheckName)
+        tk.Checkbutton(root, text=CheckName, variable=var, onvalue=CheckValue, offvalue="").pack(side='left')
+        cbValues.append(var)
+    return cbValues
+
+
+def printV(vs: list):
+    print(vs)
+    print(var.get() for var in vs if var)
+
+
 if __name__ == "__main__":
     mainwin = newWindow('员工管理', 7)
+    Values = newCheckBox(mainwin, "hobby", "爱好")
     # 显示窗口
     mainwin.mainloop()
