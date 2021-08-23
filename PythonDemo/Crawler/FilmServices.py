@@ -4,7 +4,21 @@ dbname = 'douban.db'
 
 
 def deleteById(fid: int):
+    sql = """
+        delete from film where fid=?
+        """
+    with sqlite3.connect(dbname) as conn:
+        tag = 0
+        try:
+            conn.execute(sql, [fid])
+            conn.commit()
+            tag = 1
+        except Exception as ex:
+            conn.rollback()
+            print(ex)
     print(f"删除主键值为{fid}的电影数据。。。")
+    return tag;
+
 
 
 def addFilm(fno: str, fname: str):

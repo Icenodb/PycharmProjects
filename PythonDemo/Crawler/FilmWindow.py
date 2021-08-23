@@ -43,10 +43,11 @@ def initContr(win: tk.Tk):
         # 选中行数据的text属性--该属性在放置数据时候,填充的是主键值
         dataId = tree.item(curItem).get("text")
         print(f"选中行的id是{dataId}")
-
         # 删除数据
+        msg="删除成功!" if fs.deleteById(dataId) else "删除失败"
+        tips.set(str(msg))
         # 重新检索
-
+        bc.showDataTree(tree, fs.queryFilm())
     tree.bind('<Double-1>', delrow)
 
     # -------------------------------------------------------------------------

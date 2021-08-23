@@ -12,28 +12,15 @@ def initMenu(mainWin: tk.Tk):
     mainMenu = tk.Menu()
     # 数据维护
     dataMenu = tk.Menu(tearoff=0)
-    # 读取ScriptList的内容,创建数据库中表---判断建表语句文件是否存在,存在则创建,不存在则忽略
-    """
-    TODO
-      应用python 的os模块,可以解决这个问题
-      ScriptList.txt----{
-              syscode
-              emp
-              dept
-              kpi
-          }
-      syscode.sql
-      emp.sql
-      dept.sql
-    """
 
+    # 读取ScriptList的内容,创建数据库中表---判断建表语句文件是否存在,存在则创建,不存在则忽略
     def createTable():
         with sqlite3.connect(dbname) as conn:
             with open("tableList.txt", "r", encoding="utf-8") as ftable:
                 for baseName in ftable:
                     # 拼接表名
-                    tableName = baseName.replace("\n", "")+".sql"
-                    if os.access(tableName,os.F_OK):
+                    tableName = baseName.replace("\n", "") + ".sql"
+                    if os.access(tableName, os.F_OK):
                         with open(tableName, "r", encoding="utf-8") as fsql:
                             sql = fsql.read()
                             conn.executescript(sql)
