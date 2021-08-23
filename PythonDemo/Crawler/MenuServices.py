@@ -1,6 +1,10 @@
+import os
+import sqlite3
 import tkinter as tk
 import FilmWindow as fw
 import baseContr as bc
+
+dbname = "douban.db"
 
 
 def initMenu(mainWin: tk.Tk):
@@ -24,7 +28,16 @@ def initMenu(mainWin: tk.Tk):
     """
 
     def createTable():
-        print()
+        with sqlite3.connect(dbname) as conn:
+            with open("tableList.txt", "r", encoding="utf-8") as ftable:
+                for baseName in ftable:
+                    # 拼接表名
+                    tableName = baseName.replace("\n", "")+".sql"
+                    if os.access(tableName,os.F_OK):
+                        with open(tableName, "r", encoding="utf-8") as fsql:
+                            sql = fsql.read()
+                            conn.executescript(sql)
+        print("初始化成功")
 
     dataMenu.add_command(label="数据库初始化", command=createTable)
 
