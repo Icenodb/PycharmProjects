@@ -29,11 +29,11 @@ def login():
     读取账号密码的配置文件并格式化为请求
     :return: cookies
     """
-    with open("loginProperties.txt","r",encoding="utf-8") as fr:
-        properties=fr.readlines()
+    with open("loginProperties.txt", "r", encoding="utf-8") as fr:
+        properties = fr.readlines()
         for row in properties:
-            pt_dict=eval(row)
-    data=pt_dict
+            pt_dict = eval(row)
+    data = pt_dict
     data = urllib.parse.urlencode(data)
     print(data)
     req = requests.post(url, headers=header, data=data, verify=False)
@@ -42,31 +42,6 @@ def login():
     return cookies
 
 
-def getHomePage(pageurl):
-    """
-    获取豆瓣首页
-    :param pageurl: 首页url
-    :return: response.text
-    """
-    try:
-        response = requests.get(pageurl)
-        if response.status_code == 200:
-            return response.text
-        return None
-    except Exception as ex:
-        print(ex)
-
-
 if __name__ == "__main__":
     print()
-    # pageurl = "https://movie.douban.com/top250"
-    # html = getHomePage(pageurl)
-    # print(html)
-    # with open("loginProperties.txt", "r", encoding="utf-8") as fr:
-    #     properties = fr.readlines()
-    #     for row in properties:
-    #         pt_dict = eval(row)
-    # data = pt_dict
-    # data = urllib.parse.urlencode(data)
-    # print(data)
     login()
