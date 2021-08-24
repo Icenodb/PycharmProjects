@@ -5,4 +5,3 @@ PythonDemo/Day09/__pycache__/tools.cpython-39.pyc
 *.pyc
 PythonDemo/Crawler/tools/loginProperties.txt
 *.db
-*.db
