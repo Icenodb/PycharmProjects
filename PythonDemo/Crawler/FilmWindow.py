@@ -51,6 +51,7 @@ def initContr(win: tk.Tk):
         tips.set(str(msg))
         # 重新检索
         bc.showDataTree(tree, fs.queryFilm())
+        # bc.reloadTreeView(tree)
 
     tree.bind('<Double-1>', delrow)
 
