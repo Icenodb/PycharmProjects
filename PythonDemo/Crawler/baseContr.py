@@ -247,6 +247,34 @@ def showDataTree(tree, rows):
         colIndex = colIndex + 1
 
 
+def reloadTreeView(tree):
+    """重新加载TreeView的数据"""
+    # 重新整理TreeView的数据,对数据重新编号,避免跳行
+    # 获取TreeView的数据集对象
+    items = list(tree.get_children())
+    if items:
+        print(f"items={items},focus={tree.focus()}")
+        # 5.2.从items中,删除选中行的treeView标识
+        items.remove(tree.focus())
+        # 5.3.定义列表对象,装载整理后的原始数据
+        rows = []
+        # 5.4.遍历items中的每个treeView标识
+        for item_id in items:
+            # 5.5.获取该标识对应的行对象
+            rowItem = tree.item(item_id)
+            # 5.6.获取当前行的数据列表
+            rowList = rowItem['values']
+            # 5.7.将当前行数据列表的序号,替换为主键
+            rowList[0] = rowItem['text']
+            # 5.8.将当前行数据,放入rows
+            rows.append(rowList)
+
+        # 是否存在可以显示的数据
+        if rows:
+            # 显示数据
+            showDataTree(tree, rows)
+
+
 def newTree(root, titleTuple):
     """创建数据窗口对象"""
     cols = [title[0] for title in titleTuple]  # 创建表格的标题列表
