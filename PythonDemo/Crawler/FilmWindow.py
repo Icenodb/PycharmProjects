@@ -8,13 +8,15 @@ import MainWindow as mw
 def openWindow():
     win = bc.newWindow("影片管理----数据窗口封装测试", 6)
     initContr(win)
-    # def closeThis():
-    #     # #销毁当前窗口
-    #     win.destroy()
-    #     # #打开主窗口
-    #     mw.openWindow()
-    # #添加事件拦截方法
-    # win.protocol("WM_DELETE_WINDOW",closeThis)
+
+    def closeThis():
+        # #销毁当前窗口
+        win.destroy()
+        # #打开主窗口
+        mw.openWindow()
+
+    # 添加事件拦截方法
+    win.protocol("WM_DELETE_WINDOW", closeThis)
     win.mainloop()
 
 
@@ -44,10 +46,12 @@ def initContr(win: tk.Tk):
         dataId = tree.item(curItem).get("text")
         print(f"选中行的id是{dataId}")
         # 删除数据
-        msg="删除成功!" if fs.deleteById(dataId) else "删除失败"
+        # tree.delete(curItem)
+        msg = "删除成功!" if fs.deleteById(dataId) else "删除失败"
         tips.set(str(msg))
         # 重新检索
         bc.showDataTree(tree, fs.queryFilm())
+
     tree.bind('<Double-1>', delrow)
 
     # -------------------------------------------------------------------------
@@ -81,16 +85,6 @@ def initContr(win: tk.Tk):
     row3.pack()
     # 查询数据,显示结果
     bc.showDataTree(tree, fs.queryFilm())
-
-    def closeThis():
-        # #销毁当前窗口
-        win.destroy()
-        # #打开主窗口
-        mw.openWindow()
-
-    # 添加事件拦截方法
-    win.protocol("WM_DELETE_WINDOW", closeThis)
-    win.mainloop()
 
 
 if __name__ == '__main__':
