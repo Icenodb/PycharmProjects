@@ -3,6 +3,7 @@ import sqlite3
 import tkinter as tk
 import FilmWindow as fw
 import baseContr as bc
+import CommentWindow as cw
 
 dbname = "douban.db"
 
@@ -32,8 +33,15 @@ def initMenu(mainWin: tk.Tk):
         mainWin.destroy()
         fw.openWindow()
 
+    def commentManager():
+        mainWin.destroy()
+        cw.openWindow()
+
     dataMenu.add_command(label='影片管理', command=filmsManager)
     mainMenu.add_cascade(label='数据维护', menu=dataMenu)
+    commentMenu = tk.Menu(tearoff=0)
+    commentMenu.add_command(label='短评管理',command=commentManager)
+    mainMenu.add_cascade(label='短评管理', menu=commentMenu)
     # 系统维护
     sysMenu = tk.Menu(tearoff=0)
     sysMenu.add_command(label='口令维护')

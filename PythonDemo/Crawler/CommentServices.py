@@ -23,7 +23,7 @@ def addComment(fno:str,uname:str,star:str,content:str,votes:int):
     return tag;
 
 
-def getcomment(cookies, mvid, type: str = 'h', pageNum: int = 3):  # 参数为登录成功的cookies(后台可通过cookies识别用户，电影的id)
+def getcomment(cookies, mvid, type: str = 'h', pageNum: int = 5):  # 参数为登录成功的cookies(后台可通过cookies识别用户，电影的id)
     start = 0
     w = xlwt.Workbook(encoding='ascii')  # #创建可写的workbook对象
     ws = w.add_sheet('sheet1')  # 创建工作表sheet

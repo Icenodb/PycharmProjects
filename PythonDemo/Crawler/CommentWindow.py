@@ -1,10 +1,12 @@
 import tkinter as tk
 import baseContr as bc
 import CommentServices as cs
+import MainWindow as mw
 import random
 import time
 
 from Crawler.login import login
+
 
 
 def openWindow():
@@ -42,7 +44,7 @@ def initContr(win: tk.Tk):
         fname = filmList.get()
         fno = fnoList[filmList.current()]
         cookies = login()
-        text = f"正在爬取影片《{fname}》短评.......\n"
+        text = f"已爬取影片《{fname}》短评.......\n"
         cs.getcomment(cookies, fno, 'h')
         infoBox.insert('end', text)
         infoBox.yview_moveto(1)
@@ -55,7 +57,15 @@ def initContr(win: tk.Tk):
     row2.pack()
     bc.newEmptyRow(win)  # -----间隔线------------------------
     row3.pack()
+    def closeThis():
+        # #销毁当前窗口
+        win.destroy()
+        # #打开主窗口
+        mw.openWindow()
 
+    # 添加事件拦截方法
+    win.protocol("WM_DELETE_WINDOW", closeThis)
+    win.mainloop()
 
 if __name__ == '__main__':
     openWindow()
