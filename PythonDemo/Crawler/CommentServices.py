@@ -52,11 +52,11 @@ def getcomment(cookies, mvid, type: str = 'h', pageNum: int = 5):  # 参数为�
                 votes = var.select_one('.votes').text
                 print(name, star, votes, comment)
                 addComment(str(mvid),name,str(star),comment,int(votes))
-                # ws.write(index, 0, index)  # 第0列写入 index
-                # ws.write(index, 1, name)  # 第1列写入 评论者
-                # ws.write(index, 2, star)  # 第2列写入 评星
-                # ws.write(index, 3, votes)  # 第3列写入 投票数
-                # ws.write(index, 4, comment)  # 第4列写入 评论内容
+                ws.write(index, 0, index)  # 第0列写入 index
+                ws.write(index, 1, name)  # 第1列写入 评论者
+                ws.write(index, 2, star)  # 第2列写入 评星
+                ws.write(index, 3, votes)  # 第3列写入 投票数
+                ws.write(index, 4, comment)  # 第4列写入 评论内容
                 index += 1
         except Exception as e:  # 有异常退出
             print(e)
@@ -82,6 +82,7 @@ def getFilmList():
         fnoList.append(ins[0])
         fnameList.append(ins[1])
     return fnoList, fnameList
+
 
 
 if __name__ == '__main__':
