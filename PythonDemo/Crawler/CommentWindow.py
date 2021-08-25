@@ -46,6 +46,8 @@ def initContr(win: tk.Tk):
         cookies = login()
         text = f"已爬取影片《{fname}》短评.......\n"
         cs.getcomment(cookies, fno, 'h')
+        cs.getcomment(cookies, fno, 'm')
+        cs.getcomment(cookies, fno, 'l')
         infoBox.insert('end', text)
         infoBox.yview_moveto(1)
         infoBox.update()
