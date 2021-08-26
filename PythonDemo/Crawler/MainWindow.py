@@ -1,5 +1,9 @@
+import PIL
+from PIL import ImageTk
+
 import baseContr as bc
 import MenuServices as ms
+import tkinter as tk
 
 
 def openWindow():

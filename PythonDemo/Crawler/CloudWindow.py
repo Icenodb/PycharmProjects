@@ -45,12 +45,12 @@ def openWindow():
 
     def getComm():
         """生成词云"""
-        imgName = cs.createWordImage(fnoList[filmList.current()], keys.get())
+        imgName = cs.createCommentWordImage(fnoList[filmList.current()], keys.get())
         # 显示词云图片
-        img_temp = PIL.Image.open(imgName).resize((int(3000*0.29),int(2000*0.22)),PIL.Image.ANTIALIAS)
+        img_temp = PIL.Image.open(imgName).resize((int(3000 * 0.29), int(2000 * 0.22)), PIL.Image.ANTIALIAS)
         img_tk = ImageTk.PhotoImage(img_temp)
         imgLabel.configure(image=img_tk)
-        #为imgLabel的图片属性赋值
+        # 为imgLabel的图片属性赋值
         imgLabel.image = img_tk
 
     tk.Button(row2, text=' 生成  ', command=getComm).pack()  # 创建按钮
@@ -58,12 +58,13 @@ def openWindow():
     row2.pack()
     bc.newEmptyRow(win)  # -----间隔线------------------------
     row3.pack()
+
     # win.mainloop()
 
     def closeThis():
         # #销毁当前窗口
         win.destroy()
-        #打开主窗口
+        # 打开主窗口
         mw.openWindow()
 
     # 添加事件拦截方法

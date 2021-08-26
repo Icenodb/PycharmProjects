@@ -2,16 +2,14 @@ import tkinter as tk
 import baseContr as bc
 import CommentServices as cs
 import MainWindow as mw
-import random
-import time
+import ReviewsServices as rs
 
 from Crawler.ReviewsServices import coo_regular
-from Crawler.login import login
 
 
 
 def openWindow():
-    win = bc.newWindow("短评管理")
+    win = bc.newWindow("影评管理")
     initContr(win)
     win.mainloop()
 
@@ -22,7 +20,7 @@ def initContr(win: tk.Tk):
 
     # 标题行
     row1 = tk.Frame(win)
-    bc.newLabel(row1, '短评管理')  # 创建标题
+    bc.newLabel(row1, '影评')  # 创建标题
     row1.pack()
     bc.newHr(win)
     bc.newEmptyRow(win)  # -----间隔线------------------------
@@ -45,10 +43,8 @@ def initContr(win: tk.Tk):
         fname = filmList.get()
         fno = fnoList[filmList.current()]
         cookies = coo_regular()
-        text = f"已爬取影片《{fname}》短评.......\n"
-        cs.getcomment(cookies, fno, 'h')
-        cs.getcomment(cookies, fno, 'm')
-        cs.getcomment(cookies, fno, 'l')
+        text = f"已爬取影片《{fname}》影评.......\n"
+        rs.getReviews(cookies, fno, 1)
         infoBox.insert('end', text)
         infoBox.yview_moveto(1)
         infoBox.update()
