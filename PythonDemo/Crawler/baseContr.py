@@ -298,6 +298,7 @@ def newTree(root, titleTuple):
     return tree
 
 
+
 if __name__ == "__main__":
     mainwin = newWindow('员工管理', 7)
     Values = newCheckBox(mainwin, "hobby", "爱好")

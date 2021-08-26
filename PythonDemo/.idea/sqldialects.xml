@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/Crawler/FilmServices.py" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/Crawler/comments.sql" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/Crawler/film.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Crawler/reviews.sql" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/Day08/05QueryServices.py" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/Day08/syscode.sql" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/Day08/userlog.sql" dialect="SQLite" />
