@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 
 import xlwt
 
+dbname = 'douban.db'
 
 def addComment(fno:str,uname:str,star:str,content:str,votes:int):
     sql = """
@@ -63,7 +64,7 @@ def getcomment(cookies, mvid, type: str = 'h', pageNum: int = 5):  # 参数为�
             break
 
 
-dbname = 'douban.db'
+
 
 
 def getFilmList():
