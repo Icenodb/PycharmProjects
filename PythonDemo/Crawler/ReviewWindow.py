@@ -44,7 +44,7 @@ def initContr(win: tk.Tk):
         fno = fnoList[filmList.current()]
         cookies = coo_regular()
         text = f"已爬取影片《{fname}》影评.......\n"
-        rs.getReviews(cookies, fno, 1)
+        rs.getReviews(cookies, fno, pageNum=2)
         infoBox.insert('end', text)
         infoBox.yview_moveto(1)
         infoBox.update()
