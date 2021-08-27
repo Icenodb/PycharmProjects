@@ -7,6 +7,8 @@ import sqlite3
 import os
 import ReviewWindow as rw
 import ReviewsCloudWindow as rcw
+import DataViewWindow as dw
+import ReviewDataWindow as rdw
 dbname = "douban.db"
 
 
@@ -50,6 +52,14 @@ def initMenu(mainWin: tk.Tk):
         mainWin.destroy()
         rcw.openWindow()
 
+    def dataView():
+        mainWin.destroy()
+        dw.openWindow()
+
+    def ReviewView():
+        mainWin.destroy()
+        rdw.openWindow()
+
     dataMenu.add_command(label="数据库初始化", command=createTable)
     dataMenu.add_command(label='影片管理', command=filmsManager)
     mainMenu.add_cascade(label='数据维护', menu=dataMenu)
@@ -57,11 +67,11 @@ def initMenu(mainWin: tk.Tk):
     commentMenu.add_command(label='短评爬取', command=commentManager)
     commentMenu.add_command(label='生成词云', command=showCloudWord)
     # mainMenu.add_cascade(label='评论管理', menu=commentMenu)
-    commentMenu.add_command(label='认可度分析')
+    commentMenu.add_command(label='认可度分析',command=dataView)
     commentMenu.add_separator()
     commentMenu.add_command(label='评论爬取',command=reviewManager)
     commentMenu.add_command(label='生成词云',command=reviewCloudManage)
-    commentMenu.add_command(label='认可度分析')
+    commentMenu.add_command(label='认可度分析',command=ReviewView)
     mainMenu.add_cascade(label='影评管理', menu=commentMenu)
 
     commentMenu = tk.Menu(tearoff=0)  # 影片评论管理

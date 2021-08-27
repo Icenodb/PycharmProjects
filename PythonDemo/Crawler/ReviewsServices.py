@@ -3,7 +3,6 @@ import sqlite3
 from bs4 import BeautifulSoup
 import requests
 
-from Crawler.login import login
 
 dbname = 'douban.db'
 
