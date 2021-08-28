@@ -22,7 +22,7 @@ def createTop100Img(fno: str):
         select  x.star,count(*)
           from  (
         			select a.fno,a.content,a.star,a.votes
-        				from comments as a
+        				from reviews as a
         			 where a.content is not null
         				 and a.content!=''
         				 and fno=?
